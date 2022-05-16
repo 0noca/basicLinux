@@ -90,3 +90,94 @@ Three permission types apply to each class:
 ```
     
 # Changing permission (chmod)
+```
+'r' (read) = 4
+
+'w' (write) = 2
+
+'x' (execute) = 1
+
+no permissions = 0
+```
+To set read, write and execute permissions to file owner, sum up all values '4+2+1 = 7'.
+
+To set read and write permissions to file group, sum up read and write values '4+2 = 6'.
+
+To set only read permissions to everybody else use value '4'.
+
+touch new_file.txt
+
+chmod 600 new_file.txt
+
+# Changing ownership (chown)
+
+chown username filename.txt
+
+chown username:groupname filename
+
+chown -R username:groupname dirname
+
+# Searching for files and folders (find)
+
+To search for exact file name 'client.conf' in /etc folder, type in following command: `find /etc -name 'client.conf'`
+
+If you want to search for all files with extension '.conf, type in following command in you terminal: `find /etc -name '*.conf'`
+
+`'file*'` - will search for all files and folders which begin with `'file'`
+
+`'*file'` - will search for all files and folders which end with `'file'`
+
+`'*file*'` - will search for all files and folder which has `'file'` in any place
+
+# Searching for text in files (grep command)
+
+`grep 'Directory' /etc/rsyslog.conf`
+
+If you want to search case-insensitively, you have to use '-i' option: `grep -i 'Directory' /etc/*.conf`
+
+# Downloading files from the internet (wget)
+
+`wget https://filesamples.com/samples/document/txt/sample1.txt`
+
+`cat sample1.txt`
+#
+
+If you want to save file with different name, use '-O' 
+
+`wget https://filesamples.com/samples/document/txt/sample1.txt -O new_name.txt`
+
+# Command line history (history)
+
+`history`
+
+For a specific search use:
+`history | grep mkdir`
+
+# Encoding with Base64
+
+`echo -n 'Text that will be base64 encoded' | base64`
+
+Use pipe to use another program again/ new one.
+
+`echo -n 'Text that will be base64 encoded' | base64 | base64`
+
+`echo -n 'VGV4dCB0aGF0IHdpbGwgYmUgYmFzZTY0IGVuY29kZWQ=' | base64 --decode`
+
+`echo -n 'VkdWNGRDQjBhR0YwSUhkcGJHd2dZbVVnWW1GelpUWTBJR1Z1WTI5a1pXUT0K' | base64 -d | base64 -d`
+
+## Steganography
+
+steghide --help
+
+apt-get -y install steghide
+
+echo 'Secret message.' > secret.txt
+
+cat secret.txt
+
+wget https://raw.githubusercontent.com/ianare/exif-samples/master/jpg/gps/DSCN0042.jpg
+
+steghide embed -ef secret.txt -cf DSCN0042.jpg
+
+steghide extract -sf DSCN0042.jpg -xf secret_extract.txt
+
